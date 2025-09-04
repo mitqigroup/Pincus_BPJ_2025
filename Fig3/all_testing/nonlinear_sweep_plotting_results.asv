@@ -1,0 +1,380 @@
+clear variables
+
+% current_location = ['Z:\Isaac\Isaac_Data\Supercloud\membranes\',...
+%     'nonlinear_parameter_sweeps\ep_sig_sweep\all_testing\'];
+current_location = ['D:\Work\Supercloud\membranes\',...
+    'nonlinear_parameter_sweeps\ep_sig_sweep\all_testing'];
+% main data structure
+ds = read_and_unpermute(current_location, 48);
+
+%%
+
+newcolors = ["#016D24","#FE6100","#DC267F","#648FFF","#1D0C6B","#27E0D8","#FFB000"];
+
+% slice = [47,   107,   227,   587];
+slice = [56,   26,   1137,   357, 107];
+phi_vals = flip(deg2rad(linspace(0.01,179.9,150)));
+
+% updated parameter slices
+epsilon_slice = ds.parameter_set(slice,1);
+n0_slice = ds.parameter_set(slice,2);
+d_slice = ds.parameter_set(slice,3);
+R_slice = ds.parameter_set(slice,4);
+kD_slice = ds.parameter_set(slice,5);
+kappa_slice = ds.parameter_set(slice,6);
+alpha_i_slice = ds.parameter_set(slice,7);
+sigma_slice = pi*R_slice.^2./d_slice.^2;
+zeta_slice = epsilon_slice.*n0_slice./kD_slice;
+
+% %% analyse data from each, we want local minima and maxima and end points.
+E_input = ds.E_all_nonlinear;
+% E_input(ds.E_all_toroid<ds.E_all_nonlinear) = nan;
+outputs_analyse = analyse_phi_curve(E_input,ds, slice, phi_vals,...
+    'PlotCurves', false, 'IgnoreNearNaN', false);
+% outputs_analyse = analyse_phi_curve(E_input,ds, 1020:1030, phi_vals,...
+%     'PlotCurves', true, 'IgnoreNearNaN', false);
+
+% %% plot against phi
+% anno_string = [sprintf('$k_D = %0.2g$ pJ/$\\mu$m$^2$ \n', kD_slice(1)),...
+%     sprintf('$\\kappa = %0.2g$ pJ \n', kappa_slice(1)),...
+%     sprintf('$\\alpha_i = %0.2g$ \n', alpha_i_slice(1)),...
+%     sprintf('$R = %0.2g$ $\\mu$m \n', R_slice(1)),...
+%     sprintf('$\\zeta = %0.2g$ \n', zeta_slice(1))];
+anno_string = [sprintf('$k_D = %0.2g$ pJ/$\\mu$m$^2$ \n', kD_slice(1)),...
+    sprintf('$\\kappa = %0.2g$ pJ \n', kappa_slice(1)),...
+    sprintf('$\\alpha_i = %0.2g$ \n', alpha_i_slice(1)),...
+    sprintf('$R = %0.2g$ $\\mu$m \n', R_slice(1)),...
+    sprintf('$\\sigma = %0.2g$ \n', sigma_slice(1))];
+% f1 = plot_phi_curves(ds, slice, phi_vals,...
+%     'AnalysisData', outputs_analyse,'PlotMinima', true,...
+%     'ColorOrder', newcolors, 'RelativeEnergy', true,'ylabel','$\Delta E/\mathrm{max}(|\Delta E|)$',...
+%     'DisplayNameIndex',9,'AnnotationString', anno_string);
+
+% %% 
+
+%% all curves plotted together
+
+newcolors = ["#016D24","#FE6100","#DC267F","#648FFF","#1D0C6B","#27E0D8","#FFB000"];
+
+slice = [56,   26,   1137,   357, 107];
+phi_vals = flip(deg2rad(linspace(0.01,179.9,150)));
+
+% updated parameter slices
+% epsilon_slice = ds.parameter_set(slice,1);
+% n0_slice = ds.parameter_set(slice,2);
+% d_slice = ds.parameter_set(slice,3);
+% R_slice = ds.parameter_set(slice,4);
+% kD_slice = ds.parameter_set(slice,5);
+% kappa_slice = ds.parameter_set(slice,6);
+% alpha_i_slice = ds.parameter_set(slice,7);
+% sigma_slice = pi*R_slice.^2./d_slice.^2;
+% zeta_slice = epsilon_slice.*n0_slice./kD_slice;
+
+ps = get_param_slices(ds, slice);
+
+% %% analyse data from each, we want local minima and maxima and end points.
+E_input = ds.E_all_nonlinear;
+% E_input(ds.E_all_toroid<ds.E_all_nonlinear) = nan;
+outputs_analyse = analyse_phi_curve(E_input,ds, slice, phi_vals,...
+    'PlotCurves', false, 'IgnoreNearNaN', false);
+
+% f5 = plot_phi_curves(ds, slice, phi_vals,...
+%     'AnalysisData', outputs_analyse,'PlotMinima', true,'RemoveUnphysical', true,...
+%     'ColorOrder', newcolors, 'RelativeEnergy', true,'ylabel','$\Delta E/\mathrm{max}(|\Delta E|)$',...
+%     'DisplayNameIndex',0);
+f5 = plot_phi_curves(ds, slice, phi_vals,...
+    'AnalysisData', outputs_analyse,'PlotMinima', true,...
+    'ColorOrder', newcolors, 'RelativeEnergy', true,'ylabel','$\Delta E/\mathrm{max}(|\Delta E|)$',...
+    'DisplayNameIndex',0);
+
+% %% 
+
+%% slide 24, fully wrapped
+index = 56;
+anno_string = [sprintf('$k_D = %0.2g$ pJ/$\\mu$m$^2$ \n', ds.parameter_set(index,5)),...
+    sprintf('$\\kappa = %0.2g$ pJ \n', ds.parameter_set(index,6)),...
+    sprintf('$R = %0.2g$ $\\mu$m \n', ds.parameter_set(index,4)),...
+    sprintf('$\\alpha_i = %0.2g$ \n', ds.parameter_set(index,7)),...
+    sprintf('$\\zeta = %0.2g$ \n', -ds.parameter_set(index,1)/ds.parameter_set(index,5)),...
+    sprintf('$\\sigma = %0.2g$ \n', pi*ds.parameter_set(index,4)^2/ds.parameter_set(index,3)^2)];
+outputs_analyse = analyse_phi_curve(ds.E_all_nonlinear,ds, index, phi_vals,...
+    'PlotCurves', false, 'IgnoreNearNaN', false);
+f24 = plot_phi_curves_all(ds, index, phi_vals,...
+    'AnalysisData', outputs_analyse,'PlotMinima', true,...
+    'ylabel','$\Delta E$','AnnotationString', anno_string,...
+    'ExtraCurveIndex', 0, 'AnalyticalCurves', [1,2]);
+f24 = plot_phi_curves_all(ds, index, phi_vals,...
+    'AnalysisData', outputs_analyse,'PlotMinima', true,...
+    'ylabel','$\Delta E$',...
+    'ExtraCurveIndex', 1, 'PlotCurves', [1,3,4,6]);
+
+%% slide 26, unwrapped
+index = 26;
+outputs_analyse = analyse_phi_curve(ds.E_all_nonlinear,ds, index, phi_vals,...
+    'PlotCurves', false, 'IgnoreNearNaN', false);
+anno_string = [sprintf('$k_D = %0.2g$ pJ/$\\mu$m$^2$ \n', ds.parameter_set(index,5)),...
+    sprintf('$\\kappa = %0.2g$ pJ \n', ds.parameter_set(index,6)),...
+    sprintf('$R = %0.2g$ $\\mu$m \n', ds.parameter_set(index,4)),...
+    sprintf('$\\alpha_i = %0.2g$ \n', ds.parameter_set(index,7)),...
+    sprintf('$\\zeta = %0.2g$ \n', -ds.parameter_set(index,1)/ds.parameter_set(index,5)),...
+    sprintf('$\\sigma = %0.2g$ \n', pi*ds.parameter_set(index,4)^2/ds.parameter_set(index,3)^2)];
+f26 = plot_phi_curves_all(ds, index, phi_vals,...
+    'AnalysisData', outputs_analyse,'PlotMinima', true,...
+    'ylabel','$\Delta E$','AnnotationString', anno_string,...
+    'ExtraCurveIndex', 0, 'AnalyticalCurves', [1,2]);
+f24 = plot_phi_curves_all(ds, index, phi_vals,...
+    'AnalysisData', outputs_analyse,'PlotMinima', true,...
+    'ylabel','$\Delta E$',...
+    'ExtraCurveIndex', 1, 'PlotCurves', [1,3,4,6]);
+
+%% slide 32, partially wrapped
+index = 1137;
+outputs_analyse = analyse_phi_curve(ds.E_all_nonlinear,ds, index, phi_vals,...
+    'PlotCurves', false, 'IgnoreNearNaN', false);
+anno_string = [sprintf('$k_D = %0.2g$ pJ/$\\mu$m$^2$ \n', ds.parameter_set(index,5)),...
+    sprintf('$\\kappa = %0.2g$ pJ \n', ds.parameter_set(index,6)),...
+    sprintf('$R = %0.2g$ $\\mu$m \n', ds.parameter_set(index,4)),...
+    sprintf('$\\alpha_i = %0.2g$ \n', ds.parameter_set(index,7)),...
+    sprintf('$\\zeta = %0.2g$ \n', -ds.parameter_set(index,1)/ds.parameter_set(index,5)),...
+    sprintf('$\\sigma = %0.2g$ \n', pi*ds.parameter_set(index,4)^2/ds.parameter_set(index,3)^2)];
+f32 = plot_phi_curves_all(ds, index, phi_vals,...
+    'AnalysisData', outputs_analyse,'PlotMinima', true,...
+    'ylabel','$\Delta E$','AnnotationString', anno_string,...
+    'ExtraCurveIndex', 0, 'AnalyticalCurves', [1,3]);
+f32 = plot_phi_curves_all(ds, index, phi_vals,...
+    'AnalysisData', outputs_analyse,'PlotMinima', true,...
+    'ylabel','$\Delta E$',...
+    'ExtraCurveIndex', 2, 'PlotCurves', [1,3,5,6]);
+
+%% slide 33, partially wrapped
+index = 107;
+outputs_analyse = analyse_phi_curve(ds.E_all_nonlinear,ds, index, phi_vals,...
+    'PlotCurves', false, 'IgnoreNearNaN', false);
+anno_string = [sprintf('$k_D = %0.2g$ pJ/$\\mu$m$^2$ \n', ds.parameter_set(index,5)),...
+    sprintf('$\\kappa = %0.2g$ pJ \n', ds.parameter_set(index,6)),...
+    sprintf('$R = %0.2g$ $\\mu$m \n', ds.parameter_set(index,4)),...
+    sprintf('$\\alpha_i = %0.2g$ \n', ds.parameter_set(index,7)),...
+    sprintf('$\\zeta = %0.2g$ \n', -ds.parameter_set(index,1)/ds.parameter_set(index,5)),...
+    sprintf('$\\sigma = %0.2g$ \n', pi*ds.parameter_set(index,4)^2/ds.parameter_set(index,3)^2)];
+f32 = plot_phi_curves_all(ds, index, phi_vals,...
+    'AnalysisData', outputs_analyse,'PlotMinima', true,...
+    'ylabel','$\Delta E$','AnnotationString', anno_string,...
+    'ExtraCurveIndex', 0, 'AnalyticalCurves', [1,2]);
+f32 = plot_phi_curves_all(ds, index, phi_vals,...
+    'AnalysisData', outputs_analyse,'PlotMinima', true,...
+    'ylabel','$\Delta E$',...
+    'ExtraCurveIndex', 3, 'PlotCurves', [1,3,6]);
+
+%% slide 34,bistable but fully wrapped
+index = 357;
+outputs_analyse = analyse_phi_curve(ds.E_all_nonlinear,ds, index, phi_vals,...
+    'PlotCurves', false, 'IgnoreNearNaN', false);
+anno_string = [sprintf('$k_D = %0.2g$ pJ/$\\mu$m$^2$ \n', ds.parameter_set(index,5)),...
+    sprintf('$\\kappa = %0.2g$ pJ \n', ds.parameter_set(index,6)),...
+    sprintf('$R = %0.2g$ $\\mu$m, ', ds.parameter_set(index,4)),...
+    sprintf('$\\alpha_i = %0.2g$ \n', ds.parameter_set(index,7)),...
+    sprintf('$\\zeta = %0.2g$, ', -ds.parameter_set(index,1)/ds.parameter_set(index,5)),...
+    sprintf('$\\sigma = %0.2g$ \n', pi*ds.parameter_set(index,4)^2/ds.parameter_set(index,3)^2)];
+f32 = plot_phi_curves_all(ds, index, phi_vals,...
+    'AnalysisData', outputs_analyse,'PlotMinima', true,...
+    'ylabel','$\Delta E$','AnnotationString', anno_string,...
+    'ExtraCurveIndex', 0, 'AnalyticalCurves', [1,2]);
+f32 = plot_phi_curves_all(ds, index, phi_vals,...
+    'AnalysisData', outputs_analyse,'PlotMinima', true,...
+    'ylabel','$\Delta E$',...
+    'ExtraCurveIndex', 1, 'PlotCurves', [1,3,4,6]);
+
+%%
+
+% slice = 
+
+epsilon_slice = ds.parameter_set(slice,1);
+n0_slice = ds.parameter_set(slice,2);
+d_slice = ds.parameter_set(slice,3);
+R_slice = ds.parameter_set(slice,4);
+kD_slice = ds.parameter_set(slice,5);
+kappa_slice = ds.parameter_set(slice,6);
+alpha_i_slice = ds.parameter_set(slice,7);
+sigma_slice = pi*R_slice.^2./d_slice.^2;
+zeta_slice = epsilon_slice.*n0_slice./kD_slice;
+
+anno_string = [sprintf('$k_D = %0.2g$ pJ/$\\mu$m$^2$ \n', kD_slice(1)),...
+    sprintf('$\\kappa = %0.2g$ pJ \n', kappa_slice(1)),...
+    sprintf('$\\alpha_i = %0.2g$ \n', alpha_i_slice(1)),...
+    sprintf('$R = %0.2g$ $\\mu$m \n', R_slice(1)),...
+    sprintf('$\\zeta = %0.2g$ \n', zeta_slice(1)),...
+    sprintf('$\\sigma = %0.2g$ \n', sigma_slice(1))];
+
+if ishandle(1) && strcmp(get(1, 'type'), 'figure')
+    figure(f1);
+else
+    f1 = figure('Position',[400,100,800,600]);
+    annotation('textbox', 'String', anno_string)
+end
+axes1 = gca;
+hold on
+xlabel('$\kappa/k_D$')
+ylabel('$\phi$')
+axes1.XScale = 'log';
+yticks([0, pi/4, pi/2, 3*pi/4, pi])
+yticklabels({'$0$', '$\pi/4$', '$\pi/2$', '$3 \pi/4$', '$\pi$'})
+ylim([0,pi+0.01])
+x = sigma_slice./kD_slice;
+y = outputs_analyse.phi_at_min;
+v1 = plot(x, y,...
+    'displayname', sprintf('$\\epsilon n_0 = %0.3g$', epsilon_vals(1)));
+legend
+colororder(newcolors)
+
+%%
+
+if ishandle(2) && strcmp(get(2, 'type'), 'figure')
+    figure(f2);
+else
+    f2 = figure('Position',[400,100,800,600]);
+    annotation('textbox', 'String', anno_string)
+end
+axes1 = gca;
+hold on
+% xlabel('$-\kappa/\epsilon n_0$')
+xlabel('$\kappa/k_D$')
+% ylabel('$-E_\mathrm{bend}/E_\mathrm{adhesion}$')
+ylabel('$-E_\mathrm{bend}/E_\mathrm{stretch}$')
+axes1.XScale = 'log';
+axes1.YScale = 'log';
+% yticks([0, pi/4, pi/2, 3*pi/4, pi])
+% yticklabels({'$0$', '$\pi/4$', '$\pi/2$', '$3 \pi/4$', '$\pi$'})
+% ylim([0,pi+0.01])
+% plot(sigma_vals, phi_vals(min_loc),...
+%     'displayname', sprintf('$\\epsilon n_0 = %0.3g$', epsilon*n0))
+% plot(sigma_vals, phi_min,...
+%     'displayname', sprintf('$\\epsilon n_0 = %0.3g$', epsilon*n0))
+% plot(sigma_vals, phi_min, '-',...
+%     'displayname', sprintf('$\\epsilon n_0 = %0.3g$, $R = %0.3g$ $\\mu$m', epsilon*n0, R))
+% plot(kappa_vals, phi_min, '-',...
+%     'displayname', sprintf('$\\alpha_i = %0.3g$', alpha_i))
+% scatter(kappa_vals./epsilon_vals, E_min)
+% plot(-kappa_vals./epsilon_vals, -E_min,'displayname', sprintf('$k_D = %0.3g$', kD_vals(1)))
+% plot(-kappa_vals./epsilon_vals, -E_ad_min,'displayname', sprintf('$k_D = %0.3g$', kD_vals(1)))
+% plot(-kappa_vals./epsilon_vals, E_bend_min,'displayname', sprintf('$k_D = %0.3g$', kD_vals(1)))
+% plot(-kappa_vals./epsilon_vals, -E_bend_min./E_ad_min,'displayname', sprintf('$k_D = %0.3g$', kD_vals(1)))
+p1 = plot(kappa_vals./kD_vals, E_bend_min./E_stretch_min,...
+    'displayname', sprintf('$\\epsilon n_0 = %0.3g$', epsilon_vals(1)));
+p2 = plot(kappa_vals./kD_vals, E_bend_A_min./E_stretch_min, '--',...
+    'displayname', sprintf('$\\epsilon n_0 = %0.3g$, $A$', epsilon_vals(1)));
+p3 = plot(kappa_vals./kD_vals, E_bend_B_min./E_stretch_min, ':',...
+    'displayname', sprintf('$\\epsilon n_0 = %0.3g$, $B$', epsilon_vals(1)));
+legend
+% colororder(newcolors)
+p1.Color = v1.Color;
+p2.Color = v1.Color;
+p3.Color = v1.Color;
+
+%%
+% % newcolors = ["#FFB000","#27E0D8","#1D0C6B","#DC267F","#FE6100","#648FFF","#016D24"];
+% % newcolors = ["#016D24","#648FFF","#FE6100","#DC267F","#1D0C6B","#27E0D8","#FFB000"];
+% newcolors = ["#016D24","#FE6100","#DC267F","#648FFF","#1D0C6B","#27E0D8","#FFB000"];
+% % newcolors = flip(["#016D24","#FE6100","#DC267F"]);
+% % figure();
+% % plot(1:7,ones(1,7)'*[1:7])
+% colororder(newcolors)
+
+% %% other plots
+% ytick_locs = [0, pi/4, pi/2, 3*pi/4, pi];
+% ytick_labels = {'$0$', '$\pi/4$', '$\pi/2$', '$3 \pi/4$', '$\pi$'};
+% y_limits = [0,pi+0.01];
+% x = sigma_slice./kD_slice;
+% y = outputs_analyse.phi_at_min;
+% f2 = plot_minima_xy(x,y,'yTicks', ytick_locs, 'yTickLabels', ytick_labels,...
+%     'ylims', y_limits, 'DIsplayname', sprintf('$\\epsilon n_0 = %0.3g$', epsilon_vals(1)),...
+%     'xlabel', '$\sigma$', 'ylabel', '$\phi$');
+
+% Sig_max = ds.Sigma_vals_nonlinear(1,slice);
+% slice = [779	839	899	959	1019	1079	1139	1199	1259	1319	1379	1439];
+ps = get_param_slices(ds, slice);
+E_input = ds.E_all_nonlinear;
+outputs_analyse = analyse_phi_curve(E_input,ds, slice, ds.phi_vals,...
+    'PlotCurves', false, 'IgnoreNearNaN', false, 'RemoveUnphysical', true);
+Sig_i = (ps.alpha_i_slice.*ps.kD_slice)';
+% figure();
+hold on
+axes1 = gca;
+axes1.XScale = 'log';
+% axes1.YScale = 'log';
+% plot(ps.d_slice./ps.R_slice, (outputs_analyse.Sigma_at_min-Sig_i)./Sig_i)
+plot(ps.d_slice./ps.R_slice, (outputs_analyse.Sigma_at_min)./Sig_i)
+% plot(ps.d_slice./ps.R_slice, Sig_max./Sig_i)
+% plot(ps.d_slice./ps.R_slice, (4*ps.sigma_slice'.*ps.kD_slice')./Sig_i, '--')
+% plot(ps.d_slice./ps.R_slice, ones(size(ps.d_slice)), ':k')
+patch([1e-3, 1e4, 1e4, 1e-3], [1.1, 1.1, 1e5, 1e5], [170, 170, 170]/255, 'FaceAlpha', .5);
+xlabel('$d/R$');
+ylabel('$(\Sigma-\Sigma_i)/\Sigma_i$');
+ylabel('$(\Sigma-\Sigma_i)/\Sigma_i$');
+xlim([1e1, 1e3])
+ylim([0, 4]);
+
+
+%% construct slices, can't really be done in a separate function
+% generate list of independent variables to run, which should be in the
+% order [epsilon, n0, d, R, kD, kappa, alpha_i] for each row
+R_vals = [0.05,0.5];                 % um
+sigma_vals = logspace(-6,-2,12);                % surface fraction
+%d_vals = sqrt(R_vals.^2./sigma_vals);           % um
+kD_vals = 300/10^12*1e9;                        % picoJ/um^2
+kD_base = 300/10^12*1e9;                        % picoJ/um^2
+zeta_vals = logspace(-6,-3,12);                  % dimensionless
+epsilon_vals = -zeta_vals*kD_base;              % picoJ/um^2
+n0_vals = 1;                                    % fraction
+kappa_vals = 1e-19*1e12;         % picoJ
+% kappa_vals = logspace(-21,-15, 60)*1e12;
+alpha_i_vals = [1e-6,1e-5,1e-4,1e-3,1e-2];                            % fraction
+phi_vals = flip(deg2rad(linspace(0.01,179.9,150)));
+% other constants
+N = 3e5;
+color_number = 5;
+
+ii = 0;
+slice = [];
+for rr = 1:length(R_vals)
+    for ss = 1:length(sigma_vals)
+        for kk = 1:length(kD_vals)
+            for ee = 1:length(epsilon_vals)
+                for nn = 1:length(n0_vals)
+                    for pp = 1:length(kappa_vals)
+                        for aa = 1:length(alpha_i_vals)
+                            ii = ii+1;
+%                             if ee==12 && aa==1 && rr==1 && ss == 1
+%                                 slice = [slice, ii];
+%                             end
+%                             if any(ee==[6,12]) && aa==1 && rr==1 && ss == 1
+%                                 slice = [slice, ii];
+%                             end
+%                             if ee==6 && aa==1 && rr==1 && ss == 1
+%                                 slice = [slice, ii];
+%                             end
+%                             if ee==12 && aa==2 && rr==2 && ss == 7
+%                                 slice = [slice, ii];
+%                             end
+%                             if ee==10 && aa==2 && rr==1 && any(ss==[1,2,4,10,11,12])
+%                                 slice = [slice, ii];
+%                             end
+%                             if ee==10 && aa==2 && rr==1 && any(ss==[2])
+%                                 slice = [slice, ii];
+%                             end
+%                             if ee==12 && aa==2 && rr==1 && ss==6
+%                                 slice = [slice, ii];
+%                             end
+%                             if aa==1 && rr==2 && ss == 1
+%                                 slice = [slice, ii];
+%                             end
+                            if aa==4 && rr==2 && ee == 12
+                                slice = [slice, ii];
+                            end
+                        end
+                    end
+                end
+            end
+        end
+    end
+end
+size_params = size(ds.parameter_set);
