@@ -1,0 +1,625 @@
+My task ID:  0
+Number of Tasks:  12
+my_set_min =
+     1
+my_set_max =
+     2
+parameter set is 1 
+epsilon = -2e-05 
+n0 = 1 
+d = 5605 
+R = 0.1 
+kD = 0.3 
+kappa = 1e-07 
+alpha_i = 3.333e-05 
+phi degreees = 179.9 
+alpha_A init = 0.0101  	alpha_B init = 0.01003 
+phi degreees = 178.7 
+alpha_A init = -3.171e-07  	alpha_B init = 3.334e-05 
+phi degreees = 177.5 
+alpha_A init = -2.818e-06  	alpha_B init = 3.334e-05 
+phi degreees = 176.3 
+alpha_A init = -1.675e-05  	alpha_B init = 3.334e-05 
+phi degreees = 175.1 
+alpha_A init = -1.863e-05  	alpha_B init = 3.334e-05 
+phi degreees = 173.9 
+alpha_A init = -1.863e-05  	alpha_B init = 3.334e-05 
+phi degreees = 172.7 
+alpha_A init = -1.863e-05  	alpha_B init = 3.334e-05 
+phi degreees = 171.4 
+alpha_A init = -2.043e-05  	alpha_B init = 3.334e-05 
+phi degreees = 170.2 
+alpha_A init = -2.043e-05  	alpha_B init = 3.334e-05 
+phi degreees = 169 
+alpha_A init = -3.046e-05  	alpha_B init = 3.334e-05 
+phi degreees = 167.8 
+alpha_A init = -3.834e-05  	alpha_B init = 3.334e-05 
+phi degreees = 166.6 
+alpha_A init = -3.689e-05  	alpha_B init = 3.334e-05 
+phi degreees = 165.4 
+alpha_A init = -3.55e-05  	alpha_B init = 3.334e-05 
+phi degreees = 164.2 
+alpha_A init = -3.666e-05  	alpha_B init = 3.334e-05 
+phi degreees = 163 
+alpha_A init = -3.777e-05  	alpha_B init = 3.334e-05 
+phi degreees = 161.8 
+alpha_A init = -4.08e-05  	alpha_B init = 3.334e-05 
+phi degreees = 160.6 
+alpha_A init = -4.081e-05  	alpha_B init = 3.334e-05 
+phi degreees = 159.4 
+alpha_A init = -4.081e-05  	alpha_B init = 3.334e-05 
+phi degreees = 158.2 
+alpha_A init = -3.926e-05  	alpha_B init = 3.334e-05 
+phi degreees = 157 
+alpha_A init = -3.045e-05  	alpha_B init = 3.334e-05 
+phi degreees = 155.8 
+alpha_A init = -2.926e-05  	alpha_B init = 3.334e-05 
+phi degreees = 154.5 
+alpha_A init = -3.713e-05  	alpha_B init = 3.334e-05 
+phi degreees = 153.3 
+alpha_A init = -4.334e-05  	alpha_B init = 3.334e-05 
+phi degreees = 152.1 
+alpha_A init = -4.334e-05  	alpha_B init = 3.334e-05 
+phi degreees = 150.9 
+alpha_A init = -4.334e-05  	alpha_B init = 3.334e-05 
+phi degreees = 149.7 
+alpha_A init = -3.507e-05  	alpha_B init = 3.334e-05 
+phi degreees = 148.5 
+alpha_A init = -3.367e-05  	alpha_B init = 3.334e-05 
+phi degreees = 147.3 
+alpha_A init = -3.715e-05  	alpha_B init = 3.334e-05 
+phi degreees = 146.1 
+alpha_A init = -6.359e-05  	alpha_B init = 3.334e-05 
+phi degreees = 144.9 
+alpha_A init = -4.959e-05  	alpha_B init = 3.334e-05 
+phi degreees = 143.7 
+alpha_A init = -4.767e-05  	alpha_B init = 3.334e-05 
+phi degreees = 142.5 
+alpha_A init = -4.582e-05  	alpha_B init = 3.334e-05 
+phi degreees = 141.3 
+alpha_A init = -4.582e-05  	alpha_B init = 3.334e-05 
+phi degreees = 140.1 
+alpha_A init = -3.538e-05  	alpha_B init = 3.334e-05 
+phi degreees = 138.9 
+alpha_A init = -3.392e-05  	alpha_B init = 3.334e-05 
+phi degreees = 137.6 
+alpha_A init = -6.666e-05  	alpha_B init = 3.334e-05 
+phi degreees = 136.4 
+alpha_A init = -6.666e-05  	alpha_B init = 3.334e-05 
+phi degreees = 135.2 
+alpha_A init = -6.666e-05  	alpha_B init = 3.334e-05 
+phi degreees = 134 
+alpha_A init = -6.666e-05  	alpha_B init = 3.334e-05 
+phi degreees = 132.8 
+alpha_A init = -6.666e-05  	alpha_B init = 3.334e-05 
+phi degreees = 131.6 
+alpha_A init = -6.666e-05  	alpha_B init = 3.334e-05 
+phi degreees = 130.4 
+alpha_A init = -6.666e-05  	alpha_B init = 3.334e-05 
+phi degreees = 129.2 
+alpha_A init = -6.416e-05  	alpha_B init = 3.334e-05 
+phi degreees = 128 
+alpha_A init = -6.416e-05  	alpha_B init = 3.334e-05 
+phi degreees = 126.8 
+alpha_A init = -6.174e-05  	alpha_B init = 3.334e-05 
+phi degreees = 125.6 
+alpha_A init = -6.174e-05  	alpha_B init = 3.334e-05 
+phi degreees = 124.4 
+alpha_A init = -6.174e-05  	alpha_B init = 3.334e-05 
+phi degreees = 123.2 
+alpha_A init = -6.174e-05  	alpha_B init = 3.334e-05 
+phi degreees = 121.9 
+alpha_A init = -5.938e-05  	alpha_B init = 3.334e-05 
+phi degreees = 120.7 
+alpha_A init = -5.938e-05  	alpha_B init = 3.334e-05 
+phi degreees = 119.5 
+alpha_A init = -5.709e-05  	alpha_B init = 3.334e-05 
+phi degreees = 118.3 
+alpha_A init = -5.709e-05  	alpha_B init = 3.334e-05 
+phi degreees = 117.1 
+alpha_A init = -5.718e-05  	alpha_B init = 3.334e-05 
+phi degreees = 115.9 
+alpha_A init = -5.718e-05  	alpha_B init = 3.334e-05 
+phi degreees = 114.7 
+alpha_A init = -5.718e-05  	alpha_B init = 3.334e-05 
+phi degreees = 113.5 
+alpha_A init = -5.718e-05  	alpha_B init = 3.334e-05 
+phi degreees = 112.3 
+alpha_A init = -5.493e-05  	alpha_B init = 3.334e-05 
+phi degreees = 111.1 
+alpha_A init = -5.493e-05  	alpha_B init = 3.334e-05 
+phi degreees = 109.9 
+alpha_A init = -5.273e-05  	alpha_B init = 3.334e-05 
+phi degreees = 108.7 
+alpha_A init = -5.273e-05  	alpha_B init = 3.334e-05 
+phi degreees = 107.5 
+alpha_A init = -5.282e-05  	alpha_B init = 3.334e-05 
+phi degreees = 106.3 
+alpha_A init = -5.066e-05  	alpha_B init = 3.334e-05 
+phi degreees = 105 
+alpha_A init = -4.855e-05  	alpha_B init = 3.334e-05 
+phi degreees = 103.8 
+alpha_A init = -4.855e-05  	alpha_B init = 3.334e-05 
+phi degreees = 102.6 
+alpha_A init = -4.862e-05  	alpha_B init = 3.334e-05 
+phi degreees = 101.4 
+alpha_A init = -4.862e-05  	alpha_B init = 3.334e-05 
+phi degreees = 100.2 
+alpha_A init = -4.862e-05  	alpha_B init = 3.334e-05 
+phi degreees = 99.01 
+alpha_A init = -3.82e-05  	alpha_B init = 3.334e-05 
+phi degreees = 97.8 
+alpha_A init = -3.82e-05  	alpha_B init = 3.334e-05 
+phi degreees = 96.6 
+alpha_A init = -3.82e-05  	alpha_B init = 3.334e-05 
+phi degreees = 95.39 
+alpha_A init = -3.822e-05  	alpha_B init = 3.334e-05 
+phi degreees = 94.18 
+alpha_A init = -3.822e-05  	alpha_B init = 3.334e-05 
+phi degreees = 92.97 
+alpha_A init = -3.822e-05  	alpha_B init = 3.334e-05 
+phi degreees = 91.77 
+alpha_A init = -3.822e-05  	alpha_B init = 3.334e-05 
+phi degreees = 90.56 
+alpha_A init = -3.822e-05  	alpha_B init = 3.334e-05 
+phi degreees = 89.35 
+alpha_A init = -3.83e-05  	alpha_B init = 3.334e-05 
+phi degreees = 88.14 
+alpha_A init = -3.83e-05  	alpha_B init = 3.334e-05 
+phi degreees = 86.94 
+alpha_A init = -3.632e-05  	alpha_B init = 3.334e-05 
+phi degreees = 85.73 
+alpha_A init = -3.632e-05  	alpha_B init = 3.334e-05 
+phi degreees = 84.52 
+alpha_A init = -3.632e-05  	alpha_B init = 3.334e-05 
+phi degreees = 83.31 
+alpha_A init = -3.434e-05  	alpha_B init = 3.334e-05 
+phi degreees = 82.11 
+alpha_A init = -3.237e-05  	alpha_B init = 3.333e-05 
+phi degreees = 80.9 
+alpha_A init = -3.237e-05  	alpha_B init = 3.333e-05 
+phi degreees = 79.69 
+alpha_A init = -3.255e-05  	alpha_B init = 3.333e-05 
+phi degreees = 78.49 
+alpha_A init = -3.255e-05  	alpha_B init = 3.333e-05 
+phi degreees = 77.28 
+alpha_A init = -3.255e-05  	alpha_B init = 3.333e-05 
+phi degreees = 76.07 
+alpha_A init = -3.055e-05  	alpha_B init = 3.333e-05 
+phi degreees = 74.86 
+alpha_A init = -3.055e-05  	alpha_B init = 3.333e-05 
+phi degreees = 73.66 
+alpha_A init = -3.055e-05  	alpha_B init = 3.333e-05 
+phi degreees = 72.45 
+alpha_A init = -3.055e-05  	alpha_B init = 3.333e-05 
+phi degreees = 71.24 
+alpha_A init = -3.055e-05  	alpha_B init = 3.333e-05 
+phi degreees = 70.03 
+alpha_A init = -3.055e-05  	alpha_B init = 3.333e-05 
+phi degreees = 68.83 
+alpha_A init = -3.055e-05  	alpha_B init = 3.333e-05 
+phi degreees = 67.62 
+alpha_A init = -3.055e-05  	alpha_B init = 3.333e-05 
+phi degreees = 66.41 
+alpha_A init = -3.055e-05  	alpha_B init = 3.333e-05 
+phi degreees = 65.21 
+alpha_A init = -3.055e-05  	alpha_B init = 3.333e-05 
+phi degreees = 64 
+alpha_A init = -3.055e-05  	alpha_B init = 3.333e-05 
+phi degreees = 62.79 
+alpha_A init = -3.055e-05  	alpha_B init = 3.333e-05 
+phi degreees = 61.58 
+alpha_A init = -3.055e-05  	alpha_B init = 3.333e-05 
+phi degreees = 60.38 
+alpha_A init = -3.254e-05  	alpha_B init = 3.333e-05 
+phi degreees = 59.17 
+alpha_A init = -3.254e-05  	alpha_B init = 3.333e-05 
+phi degreees = 57.96 
+alpha_A init = -3.254e-05  	alpha_B init = 3.333e-05 
+phi degreees = 56.75 
+alpha_A init = -3.254e-05  	alpha_B init = 3.333e-05 
+phi degreees = 55.55 
+alpha_A init = -3.254e-05  	alpha_B init = 3.333e-05 
+phi degreees = 54.34 
+alpha_A init = -3.254e-05  	alpha_B init = 3.333e-05 
+phi degreees = 53.13 
+alpha_A init = -3.03e-05  	alpha_B init = 3.333e-05 
+phi degreees = 51.92 
+alpha_A init = -3.03e-05  	alpha_B init = 3.333e-05 
+phi degreees = 50.72 
+alpha_A init = -3.055e-05  	alpha_B init = 3.333e-05 
+phi degreees = 49.51 
+alpha_A init = -3.066e-05  	alpha_B init = 3.333e-05 
+phi degreees = 48.3 
+alpha_A init = -3.066e-05  	alpha_B init = 3.333e-05 
+phi degreees = 47.1 
+alpha_A init = -3.066e-05  	alpha_B init = 3.333e-05 
+phi degreees = 45.89 
+alpha_A init = -3.066e-05  	alpha_B init = 3.333e-05 
+phi degreees = 44.68 
+alpha_A init = -3.066e-05  	alpha_B init = 3.333e-05 
+phi degreees = 43.47 
+alpha_A init = -3.066e-05  	alpha_B init = 3.333e-05 
+phi degreees = 42.27 
+alpha_A init = -3.066e-05  	alpha_B init = 3.333e-05 
+phi degreees = 41.06 
+alpha_A init = -3.066e-05  	alpha_B init = 3.333e-05 
+phi degreees = 39.85 
+alpha_A init = -3.066e-05  	alpha_B init = 3.333e-05 
+phi degreees = 38.64 
+alpha_A init = -3.069e-05  	alpha_B init = 3.333e-05 
+phi degreees = 37.44 
+alpha_A init = -3.069e-05  	alpha_B init = 3.333e-05 
+phi degreees = 36.23 
+alpha_A init = -3.069e-05  	alpha_B init = 3.333e-05 
+phi degreees = 35.02 
+alpha_A init = -3.069e-05  	alpha_B init = 3.333e-05 
+phi degreees = 33.81 
+alpha_A init = -3.069e-05  	alpha_B init = 3.333e-05 
+phi degreees = 32.61 
+alpha_A init = -3.08e-05  	alpha_B init = 3.333e-05 
+phi degreees = 31.4 
+alpha_A init = -3.08e-05  	alpha_B init = 3.333e-05 
+phi degreees = 30.19 
+alpha_A init = -3.353e-05  	alpha_B init = 3.333e-05 
+phi degreees = 28.99 
+alpha_A init = -3.353e-05  	alpha_B init = 3.333e-05 
+phi degreees = 27.78 
+alpha_A init = -3.353e-05  	alpha_B init = 3.333e-05 
+phi degreees = 26.57 
+alpha_A init = -3.353e-05  	alpha_B init = 3.333e-05 
+phi degreees = 25.36 
+alpha_A init = -3.353e-05  	alpha_B init = 3.333e-05 
+phi degreees = 24.16 
+alpha_A init = -3.353e-05  	alpha_B init = 3.333e-05 
+phi degreees = 22.95 
+alpha_A init = -3.353e-05  	alpha_B init = 3.333e-05 
+phi degreees = 21.74 
+alpha_A init = -3.353e-05  	alpha_B init = 3.333e-05 
+phi degreees = 20.53 
+alpha_A init = -3.353e-05  	alpha_B init = 3.333e-05 
+phi degreees = 19.33 
+alpha_A init = -3.353e-05  	alpha_B init = 3.333e-05 
+phi degreees = 18.12 
+alpha_A init = -3.353e-05  	alpha_B init = 3.333e-05 
+phi degreees = 16.91 
+alpha_A init = -3.353e-05  	alpha_B init = 3.333e-05 
+phi degreees = 15.71 
+alpha_A init = -3.353e-05  	alpha_B init = 3.333e-05 
+phi degreees = 14.5 
+alpha_A init = -3.353e-05  	alpha_B init = 3.333e-05 
+phi degreees = 13.29 
+alpha_A init = -3.353e-05  	alpha_B init = 3.333e-05 
+phi degreees = 12.08 
+alpha_A init = -3.443e-05  	alpha_B init = 3.333e-05 
+phi degreees = 10.88 
+alpha_A init = -3.443e-05  	alpha_B init = 3.333e-05 
+phi degreees = 9.669 
+alpha_A init = -3.443e-05  	alpha_B init = 3.333e-05 
+phi degreees = 8.461 
+alpha_A init = -3.443e-05  	alpha_B init = 3.333e-05 
+phi degreees = 7.254 
+alpha_A init = -3.443e-05  	alpha_B init = 3.333e-05 
+phi degreees = 6.047 
+alpha_A init = -3.443e-05  	alpha_B init = 3.333e-05 
+phi degreees = 4.839 
+alpha_A init = -3.443e-05  	alpha_B init = 3.333e-05 
+phi degreees = 3.632 
+alpha_A init = -3.443e-05  	alpha_B init = 3.333e-05 
+phi degreees = 2.425 
+alpha_A init = -3.443e-05  	alpha_B init = 3.333e-05 
+phi degreees = 1.217 
+alpha_A init = -3.443e-05  	alpha_B init = 3.333e-05 
+phi degreees = 0.01 
+alpha_A init = -3.443e-05  	alpha_B init = 3.333e-05 
+Elapsed time is 596.178416 seconds.
+parameter set is 2 
+epsilon = -2e-05 
+n0 = 1 
+d = 1.772 
+R = 0.1 
+kD = 0.3 
+kappa = 1e-07 
+alpha_i = 3.333e-05 
+phi degreees = 179.9 
+alpha_A init = 0.0101  	alpha_B init = 0.01003 
+phi degreees = 178.7 
+alpha_A init = 0.03997  	alpha_B init = 0.04004 
+phi degreees = 177.5 
+alpha_A init = 0.03997  	alpha_B init = 0.04004 
+phi degreees = 176.3 
+alpha_A init = 0.03985  	alpha_B init = 0.04015 
+phi degreees = 175.1 
+alpha_A init = 0.03991  	alpha_B init = 0.0401 
+phi degreees = 173.9 
+alpha_A init = 0.03992  	alpha_B init = 0.03998 
+phi degreees = 172.7 
+alpha_A init = 0.03986  	alpha_B init = 0.03993 
+phi degreees = 171.4 
+alpha_A init = 0.03978  	alpha_B init = 0.03985 
+phi degreees = 170.2 
+alpha_A init = 0.03969  	alpha_B init = 0.03975 
+phi degreees = 169 
+alpha_A init = 0.03958  	alpha_B init = 0.03964 
+phi degreees = 167.8 
+alpha_A init = 0.03945  	alpha_B init = 0.03951 
+phi degreees = 166.6 
+alpha_A init = 0.0393  	alpha_B init = 0.03936 
+phi degreees = 165.4 
+alpha_A init = 0.03913  	alpha_B init = 0.0392 
+phi degreees = 164.2 
+alpha_A init = 0.03895  	alpha_B init = 0.03901 
+phi degreees = 163 
+alpha_A init = 0.03875  	alpha_B init = 0.03882 
+phi degreees = 161.8 
+alpha_A init = 0.03854  	alpha_B init = 0.0386 
+phi degreees = 160.6 
+alpha_A init = 0.0383  	alpha_B init = 0.03837 
+phi degreees = 159.4 
+alpha_A init = 0.03806  	alpha_B init = 0.03812 
+phi degreees = 158.2 
+alpha_A init = 0.03779  	alpha_B init = 0.03786 
+phi degreees = 157 
+alpha_A init = 0.03751  	alpha_B init = 0.03758 
+phi degreees = 155.8 
+alpha_A init = 0.03722  	alpha_B init = 0.03728 
+phi degreees = 154.5 
+alpha_A init = 0.03691  	alpha_B init = 0.03698 
+phi degreees = 153.3 
+alpha_A init = 0.03659  	alpha_B init = 0.03665 
+phi degreees = 152.1 
+alpha_A init = 0.03625  	alpha_B init = 0.03632 
+phi degreees = 150.9 
+alpha_A init = 0.0359  	alpha_B init = 0.03596 
+phi degreees = 149.7 
+alpha_A init = 0.03554  	alpha_B init = 0.0356 
+phi degreees = 148.5 
+alpha_A init = 0.03516  	alpha_B init = 0.03522 
+phi degreees = 147.3 
+alpha_A init = 0.03477  	alpha_B init = 0.03483 
+phi degreees = 146.1 
+alpha_A init = 0.03437  	alpha_B init = 0.03443 
+phi degreees = 144.9 
+alpha_A init = 0.03395  	alpha_B init = 0.03402 
+phi degreees = 143.7 
+alpha_A init = 0.03353  	alpha_B init = 0.03359 
+phi degreees = 142.5 
+alpha_A init = 0.0331  	alpha_B init = 0.03316 
+phi degreees = 141.3 
+alpha_A init = 0.03265  	alpha_B init = 0.03271 
+phi degreees = 140.1 
+alpha_A init = 0.0322  	alpha_B init = 0.03226 
+phi degreees = 138.9 
+alpha_A init = 0.03173  	alpha_B init = 0.0318 
+phi degreees = 137.6 
+alpha_A init = 0.03126  	alpha_B init = 0.03132 
+phi degreees = 136.4 
+alpha_A init = 0.03078  	alpha_B init = 0.03084 
+phi degreees = 135.2 
+alpha_A init = 0.03029  	alpha_B init = 0.03035 
+phi degreees = 134 
+alpha_A init = 0.02979  	alpha_B init = 0.02986 
+phi degreees = 132.8 
+alpha_A init = 0.02929  	alpha_B init = 0.02935 
+phi degreees = 131.6 
+alpha_A init = 0.02878  	alpha_B init = 0.02885 
+phi degreees = 130.4 
+alpha_A init = 0.02827  	alpha_B init = 0.02833 
+phi degreees = 129.2 
+alpha_A init = 0.02775  	alpha_B init = 0.02781 
+phi degreees = 128 
+alpha_A init = 0.02722  	alpha_B init = 0.02729 
+phi degreees = 126.8 
+alpha_A init = 0.02669  	alpha_B init = 0.02676 
+phi degreees = 125.6 
+alpha_A init = 0.02616  	alpha_B init = 0.02622 
+phi degreees = 124.4 
+alpha_A init = 0.02562  	alpha_B init = 0.02569 
+phi degreees = 123.2 
+alpha_A init = 0.02509  	alpha_B init = 0.02515 
+phi degreees = 121.9 
+alpha_A init = 0.02455  	alpha_B init = 0.02461 
+phi degreees = 120.7 
+alpha_A init = 0.024  	alpha_B init = 0.02407 
+phi degreees = 119.5 
+alpha_A init = 0.02346  	alpha_B init = 0.02353 
+phi degreees = 118.3 
+alpha_A init = 0.02292  	alpha_B init = 0.02298 
+phi degreees = 117.1 
+alpha_A init = 0.02237  	alpha_B init = 0.02244 
+phi degreees = 115.9 
+alpha_A init = 0.02183  	alpha_B init = 0.02189 
+phi degreees = 114.7 
+alpha_A init = 0.02129  	alpha_B init = 0.02135 
+phi degreees = 113.5 
+alpha_A init = 0.02075  	alpha_B init = 0.02081 
+phi degreees = 112.3 
+alpha_A init = 0.02021  	alpha_B init = 0.02027 
+phi degreees = 111.1 
+alpha_A init = 0.01967  	alpha_B init = 0.01973 
+phi degreees = 109.9 
+alpha_A init = 0.01913  	alpha_B init = 0.0192 
+phi degreees = 108.7 
+alpha_A init = 0.0186  	alpha_B init = 0.01867 
+phi degreees = 107.5 
+alpha_A init = 0.01808  	alpha_B init = 0.01814 
+phi degreees = 106.3 
+alpha_A init = 0.01755  	alpha_B init = 0.01761 
+phi degreees = 105 
+alpha_A init = 0.01703  	alpha_B init = 0.01709 
+phi degreees = 103.8 
+alpha_A init = 0.01651  	alpha_B init = 0.01658 
+phi degreees = 102.6 
+alpha_A init = 0.016  	alpha_B init = 0.01607 
+phi degreees = 101.4 
+alpha_A init = 0.0155  	alpha_B init = 0.01556 
+phi degreees = 100.2 
+alpha_A init = 0.015  	alpha_B init = 0.01506 
+phi degreees = 99.01 
+alpha_A init = 0.01451  	alpha_B init = 0.01457 
+phi degreees = 97.8 
+alpha_A init = 0.01402  	alpha_B init = 0.01409 
+phi degreees = 96.6 
+alpha_A init = 0.01354  	alpha_B init = 0.01361 
+phi degreees = 95.39 
+alpha_A init = 0.01307  	alpha_B init = 0.01313 
+phi degreees = 94.18 
+alpha_A init = 0.0126  	alpha_B init = 0.01267 
+phi degreees = 92.97 
+alpha_A init = 0.01214  	alpha_B init = 0.01221 
+phi degreees = 91.77 
+alpha_A init = 0.01169  	alpha_B init = 0.01176 
+phi degreees = 90.56 
+alpha_A init = 0.01125  	alpha_B init = 0.01132 
+phi degreees = 89.35 
+alpha_A init = 0.01082  	alpha_B init = 0.01089 
+phi degreees = 88.14 
+alpha_A init = 0.0104  	alpha_B init = 0.01046 
+phi degreees = 86.94 
+alpha_A init = 0.009976  	alpha_B init = 0.01004 
+phi degreees = 85.73 
+alpha_A init = 0.009569  	alpha_B init = 0.009637 
+phi degreees = 84.52 
+alpha_A init = 0.009171  	alpha_B init = 0.009239 
+phi degreees = 83.31 
+alpha_A init = 0.008783  	alpha_B init = 0.00885 
+phi degreees = 82.11 
+alpha_A init = 0.008404  	alpha_B init = 0.00847 
+phi degreees = 80.9 
+alpha_A init = 0.008034  	alpha_B init = 0.0081 
+phi degreees = 79.69 
+alpha_A init = 0.007673  	alpha_B init = 0.00774 
+phi degreees = 78.49 
+alpha_A init = 0.007322  	alpha_B init = 0.007388 
+phi degreees = 77.28 
+alpha_A init = 0.006981  	alpha_B init = 0.007047 
+phi degreees = 76.07 
+alpha_A init = 0.00665  	alpha_B init = 0.006715 
+phi degreees = 74.86 
+alpha_A init = 0.006328  	alpha_B init = 0.006393 
+phi degreees = 73.66 
+alpha_A init = 0.006016  	alpha_B init = 0.00608 
+phi degreees = 72.45 
+alpha_A init = 0.005714  	alpha_B init = 0.005778 
+phi degreees = 71.24 
+alpha_A init = 0.005421  	alpha_B init = 0.005485 
+phi degreees = 70.03 
+alpha_A init = 0.005139  	alpha_B init = 0.005201 
+phi degreees = 68.83 
+alpha_A init = 0.004859  	alpha_B init = 0.004928 
+phi degreees = 67.62 
+alpha_A init = 0.004596  	alpha_B init = 0.004664 
+phi degreees = 66.41 
+alpha_A init = 0.004343  	alpha_B init = 0.00441 
+phi degreees = 65.21 
+alpha_A init = 0.004098  	alpha_B init = 0.004165 
+phi degreees = 64 
+alpha_A init = 0.003863  	alpha_B init = 0.00393 
+phi degreees = 62.79 
+alpha_A init = 0.003637  	alpha_B init = 0.003704 
+phi degreees = 61.58 
+alpha_A init = 0.00342  	alpha_B init = 0.003486 
+phi degreees = 60.38 
+alpha_A init = 0.003212  	alpha_B init = 0.003278 
+phi degreees = 59.17 
+alpha_A init = 0.003012  	alpha_B init = 0.003079 
+phi degreees = 57.96 
+alpha_A init = 0.002822  	alpha_B init = 0.002889 
+phi degreees = 56.75 
+alpha_A init = 0.00264  	alpha_B init = 0.002707 
+phi degreees = 55.55 
+alpha_A init = 0.002466  	alpha_B init = 0.002533 
+phi degreees = 54.34 
+alpha_A init = 0.002301  	alpha_B init = 0.002367 
+phi degreees = 53.13 
+alpha_A init = 0.002144  	alpha_B init = 0.00221 
+phi degreees = 51.92 
+alpha_A init = 0.001994  	alpha_B init = 0.00206 
+phi degreees = 50.72 
+alpha_A init = 0.001852  	alpha_B init = 0.001918 
+phi degreees = 49.51 
+alpha_A init = 0.001717  	alpha_B init = 0.001783 
+phi degreees = 48.3 
+alpha_A init = 0.001588  	alpha_B init = 0.001656 
+phi degreees = 47.1 
+alpha_A init = 0.001468  	alpha_B init = 0.001535 
+phi degreees = 45.89 
+alpha_A init = 0.001354  	alpha_B init = 0.001421 
+phi degreees = 44.68 
+alpha_A init = 0.001247  	alpha_B init = 0.001314 
+phi degreees = 43.47 
+alpha_A init = 0.001146  	alpha_B init = 0.001213 
+phi degreees = 42.27 
+alpha_A init = 0.001051  	alpha_B init = 0.001118 
+phi degreees = 41.06 
+alpha_A init = 0.0009623  	alpha_B init = 0.001029 
+phi degreees = 39.85 
+alpha_A init = 0.0008787  	alpha_B init = 0.0009455 
+phi degreees = 38.64 
+alpha_A init = 0.0008005  	alpha_B init = 0.0008672 
+phi degreees = 37.44 
+alpha_A init = 0.0007273  	alpha_B init = 0.000794 
+phi degreees = 36.23 
+alpha_A init = 0.000659  	alpha_B init = 0.0007257 
+phi degreees = 35.02 
+alpha_A init = 0.0005954  	alpha_B init = 0.000662 
+phi degreees = 33.81 
+alpha_A init = 0.0005363  	alpha_B init = 0.0006027 
+phi degreees = 32.61 
+alpha_A init = 0.0004808  	alpha_B init = 0.0005476 
+phi degreees = 31.4 
+alpha_A init = 0.0004297  	alpha_B init = 0.0004965 
+phi degreees = 30.19 
+alpha_A init = 0.0003824  	alpha_B init = 0.0004492 
+phi degreees = 28.99 
+alpha_A init = 0.0003387  	alpha_B init = 0.0004054 
+phi degreees = 27.78 
+alpha_A init = 0.0002982  	alpha_B init = 0.0003649 
+phi degreees = 26.57 
+alpha_A init = 0.000261  	alpha_B init = 0.0003276 
+phi degreees = 25.36 
+alpha_A init = 0.0002267  	alpha_B init = 0.0002933 
+phi degreees = 24.16 
+alpha_A init = 0.000195  	alpha_B init = 0.0002618 
+phi degreees = 22.95 
+alpha_A init = 0.0001662  	alpha_B init = 0.0002329 
+phi degreees = 21.74 
+alpha_A init = 0.0001398  	alpha_B init = 0.0002065 
+phi degreees = 20.53 
+alpha_A init = 0.0001219  	alpha_B init = 0.0001824 
+phi degreees = 19.33 
+alpha_A init = 9.39e-05  	alpha_B init = 0.0001605 
+phi degreees = 18.12 
+alpha_A init = 8.087e-05  	alpha_B init = 0.0001407 
+phi degreees = 16.91 
+alpha_A init = 6.583e-05  	alpha_B init = 0.0001229 
+phi degreees = 15.71 
+alpha_A init = 5.15e-05  	alpha_B init = 0.000107 
+phi degreees = 14.5 
+alpha_A init = 3.859e-05  	alpha_B init = 9.282e-05 
+phi degreees = 13.29 
+alpha_A init = 2.726e-05  	alpha_B init = 8.038e-05 
+phi degreees = 12.08 
+alpha_A init = 1.751e-05  	alpha_B init = 6.96e-05 
+phi degreees = 10.88 
+alpha_A init = 9.273e-06  	alpha_B init = 6.042e-05 
+phi degreees = 9.669 
+alpha_A init = 2.457e-06  	alpha_B init = 5.279e-05 
+phi degreees = 8.461 
+alpha_A init = 9.948e-07  	alpha_B init = 4.663e-05 
+phi degreees = 7.254 
+alpha_A init = 1.691e-06  	alpha_B init = 4.186e-05 
+phi degreees = 6.047 
+alpha_A init = 1.926e-06  	alpha_B init = 3.837e-05 
+phi degreees = 4.839 
+alpha_A init = 1.991e-06  	alpha_B init = 3.6e-05 
+phi degreees = 3.632 
+alpha_A init = 1.921e-06  	alpha_B init = 3.454e-05 
+phi degreees = 2.425 
+alpha_A init = 1.845e-06  	alpha_B init = 3.376e-05 
+phi degreees = 1.217 
+alpha_A init = 1.818e-06  	alpha_B init = 3.343e-05 
+phi degreees = 0.01 
+alpha_A init = 1.818e-06  	alpha_B init = 3.334e-05 
+Elapsed time is 2133.291964 seconds.
+LLSUB_RANK=0: mkdir: cannot create directory 'data': File exists

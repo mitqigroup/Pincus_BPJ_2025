@@ -1,0 +1,11 @@
+LLSUB_RANK=10: mkdir: cannot create directory 'data': File exists
+LLSUB_RANK=7: mkdir: cannot create directory 'data': File exists
+LLSUB_RANK=9: mkdir: cannot create directory 'data': File exists
+LLSUB_RANK=6: mkdir: cannot create directory 'data': File exists
+LLSUB_RANK=8: mkdir: cannot create directory 'data': File exists
+LLSUB_RANK=1: mkdir: cannot create directory 'data': File exists
+LLSUB_RANK=11: mkdir: cannot create directory 'data': File exists
+LLSUB_RANK=0: mkdir: cannot create directory 'data': File exists
+LLSUB_RANK=3: mkdir: cannot create directory 'data': File exists
+LLSUB_RANK=4: mkdir: cannot create directory 'data': File exists
+LLSUB_RANK=2: mkdir: cannot create directory 'data': File exists
