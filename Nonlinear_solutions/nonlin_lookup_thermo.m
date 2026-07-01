@@ -1,0 +1,342 @@
+%clear variables
+warning('off', 'MATLAB:ode45:IntegrationTolNotMet');
+
+% lookup_table = load("/home/gridsan/ipincus/membranes/codes_scripts/Membrane_scripts/Nonlinear_solutions/gridded_interp.mat");
+lookup_table = load("gridded_interp.mat");
+
+% addpath("/home/gridsan/ipincus/membranes/codes_scripts/Membrane_scripts");
+% addpath("/home/gridsan/ipincus/membranes/codes_scripts/Membrane_scripts/Linear_solution");
+% addpath("/home/gridsan/ipincus/membranes/codes_scripts/Membrane_scripts/Nonlinear_solutions");
+
+MyTaskID = 0;
+NumberOfTasks = 1;
+
+% check that the environment variables have been read in correctly
+if ~(exist('MyTaskID', 'var')&&exist('NumberOfTasks', 'var'))
+    error('Environment variables not set correctly')
+end
+
+% taskIDs count from zero, alter this here
+MyTaskID = MyTaskID + 1;
+
+% other constants
+kBT = 4.11e-21*1e12;    % pJ
+A = 140;            % um^2
+% generate list of independent variables to run, which should be in the
+% order [epsilon, n0, d, R, kD, kappa, alpha_i] for each row
+R_vals = [0.1];                 % um
+sigma_vals = [2.2440e-04];                % surface fraction
+kD_vals = 0.3;                        % picoJ/um^2
+epsilon_vals = -3e-5;              % picoJ/um^2
+n0_vals = 1;                                    % fraction
+kappa_vals = 25*kBT;         % picoJ
+Sigma_i_vals = [1e-7];                            % N/m
+phi_vals = deg2rad(linspace(0.1,179.9,20));
+%phi_vals = [phi_vals(70:-1:1),phi_vals(71:length(phi_vals))];
+
+jj = 0;
+for rr = 1:length(R_vals)
+    for ss = 1:length(sigma_vals)
+        for kk = 1:length(kD_vals)
+            for ee = 1:length(epsilon_vals)
+                for nn = 1:length(n0_vals)
+                    for pp = 1:length(kappa_vals)
+                        for aa = 1:length(Sigma_i_vals)
+                            jj = jj+1;
+                            parameter_set(jj, 1:7) = [epsilon_vals(ee),...
+                                n0_vals(nn),...
+                                sqrt(pi*R_vals(rr)^2/sigma_vals(ss)),...
+                                R_vals(rr),...
+                                kD_vals(kk),...
+                                kappa_vals(pp),...
+                                Sigma_i_vals(aa)];
+                        end
+                    end
+                end
+            end
+        end
+    end
+end
+
+% randomly shuffle the parameter set so that we have a more even distribution between
+% each core on our node. We can unshuffle it later on if we want to. We MUST set the
+% random number generator to the same value, since it must be identical between cores
+rng('default');
+rng(1);
+
+size_params = size(parameter_set);
+
+permutation_array = randperm(size_params(1));
+
+parameter_set_permuted = parameter_set;
+% parameter_set_unpermuted = parameter_set;
+
+for ii=1:size_params(2)
+    parameter_set_permuted(:,ii) = parameter_set(permutation_array,ii);
+end
+parameter_set_original = parameter_set;
+parameter_set = parameter_set_permuted;
+
+% for ii=1:size_params(2)
+    % for jj = 1:length(permutation_array)
+        % kk = permutation_array(jj);
+        % parameter_set_unpermuted(kk,ii) = parameter_set_permuted(jj,ii);
+    % end
+% end
+
+
+%% split up job between task IDs
+size_parameter_set = size(parameter_set);
+total_parameter_sets = size_parameter_set(1);
+min_sets_per_job = floor(total_parameter_sets/NumberOfTasks);
+extra_sets = mod(total_parameter_sets, NumberOfTasks);
+if MyTaskID <= extra_sets
+    my_set_min = (min_sets_per_job+1)*(MyTaskID-1)+1
+    my_set_max = (min_sets_per_job+1)*(MyTaskID)
+else
+    my_set_min = (min_sets_per_job+1)*(extra_sets) ...
+        + min_sets_per_job*(MyTaskID-extra_sets-1) + 1
+    my_set_max = (min_sets_per_job+1)*(extra_sets) ...
+        + min_sets_per_job*(MyTaskID-extra_sets)
+end
+parameter_set_self = parameter_set(my_set_min:my_set_max, :);
+my_set_size = size(parameter_set_self);
+my_set_length = my_set_size(1);
+
+save_name = sprintf('data/task%i_results.mat', MyTaskID-1);
+
+%%
+
+phi_vals_self = phi_vals;
+
+E_all = zeros(6,length(phi_vals_self), my_set_length);
+
+E_all_toroid_self = nan(6,length(phi_vals_self), my_set_length);
+alpha_A_vals_toroid_self = nan(length(phi_vals_self), my_set_length);
+alpha_B_vals_toroid_self = nan(size(alpha_A_vals_toroid_self));
+S_A_vals_toroid_self = nan(size(alpha_A_vals_toroid_self));
+S_B_vals_toroid_self = nan(size(alpha_A_vals_toroid_self));
+Sigma_vals_toroid_self = nan(size(alpha_A_vals_toroid_self));
+rho_vals_self = nan(size(alpha_A_vals_toroid_self));
+
+E_all_linear_self = nan(6,length(phi_vals_self), my_set_length);
+alpha_A_vals_linear_self = nan(length(phi_vals_self), my_set_length);
+alpha_B_vals_linear_self = nan(size(alpha_A_vals_toroid_self));
+S_A_vals_linear_self = nan(size(alpha_A_vals_toroid_self));
+S_B_vals_linear_self = nan(size(alpha_A_vals_toroid_self));
+Sigma_vals_linear_self = nan(size(alpha_A_vals_toroid_self));
+
+E_all_nonlinear_self = nan(6,length(phi_vals_self), my_set_length);
+alpha_A_vals_nonlinear_self = nan(length(phi_vals_self), my_set_length);
+alpha_B_vals_nonlinear_self = nan(size(alpha_A_vals_toroid_self));
+h_phi_vals_nonlinear_self = nan(size(alpha_A_vals_toroid_self));
+S_A_vals_nonlinear_self = nan(size(alpha_A_vals_toroid_self));
+S_B_vals_nonlinear_self = nan(size(alpha_A_vals_toroid_self));
+Sigma_vals_nonlinear_self = nan(size(alpha_A_vals_toroid_self));
+phi_end_nonlinear_self = nan(size(alpha_A_vals_toroid_self));
+
+for ii = 1:my_set_length
+    epsilon = parameter_set_self(ii, 1);
+    n0 = parameter_set_self(ii, 2);
+    d = parameter_set_self(ii, 3);
+    R = parameter_set_self(ii, 4);
+    kD = parameter_set_self(ii, 5);
+    kappa = parameter_set_self(ii, 6);
+    Sigma_i = parameter_set_self(ii, 7);
+    fprintf('parameter set is %i \n', ii);
+    fprintf('epsilon = %0.4g \n', epsilon);
+    fprintf('n0 = %0.4g \n', n0);
+    fprintf('d = %0.4g \n', d);
+    fprintf('R = %0.4g \n', R);
+    fprintf('kD = %0.4g \n', kD);
+    fprintf('kappa = %0.4g \n', kappa);
+    fprintf('Sigma_i = %0.4g \n', Sigma_i);
+    zeta = epsilon*n0/kD;
+    sigma = sqrt(pi*R^2/d^2);
+    alpha_i = kBT/(8*pi*kappa)*log(1+0.1*A*Sigma_i/kappa)+Sigma_i/kD;
+    fprintf('alpha_i = %0.4g \n', alpha_i);
+
+    tic
+    for jj = 1:length(phi_vals_self)
+        phi = phi_vals_self(jj);
+        fprintf('phi degreees = %0.4g \n', rad2deg(phi));
+        
+        if jj==1
+            Sigma_init = Sigma_i;
+        else
+            Sigma_init = Sigma;
+        end
+
+        fprintf('Sigma init = %0.4g  \n', Sigma_init);
+
+        %%
+        %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+        % Nonlinear solution lookup table
+        %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+        
+%         if phi>pi/2&&jj~=1
+%             % check if this is going to lead to an unphysical result. If it is,
+%             % let's just skip and move on
+%             Sigma = alpha_B_init*kD;
+%             out = free_shape_nonlinear_free_h(R, d, phi, kappa, Sigma, false);
+%             psi_end = out.y(1,end);
+%             if psi_end>0.1
+%                 % now we just skip
+%                 E_all_nonlinear_self(:,jj,ii) = E_all_nonlinear_self(:,jj-1,ii);
+%                 alpha_A_vals_nonlinear_self(jj,ii) = alpha_A_vals_nonlinear_self(jj-1,ii);
+%                 alpha_B_vals_nonlinear_self(jj,ii) = alpha_B_vals_nonlinear_self(jj-1,ii);
+%                 S_A_vals_nonlinear_self(jj,ii) = S_A_vals_nonlinear_self(jj-1,ii);
+%                 S_B_vals_nonlinear_self(jj,ii) = S_B_vals_nonlinear_self(jj-1,ii);
+%                 Sigma_vals_nonlinear_self(jj,ii) = Sigma_vals_nonlinear_self(jj-1,ii);
+%                 phi_end_nonlinear_self(jj,ii) = psi_end;
+%                 continue
+%             end
+%         end
+
+        const = [epsilon, n0, d, R, kD, kappa, alpha_i, A, phi, kBT];
+        [out,fval,exitflag,output,lam_vals,grad,hessian] = ...
+            get_nonlinear_minimum_lookup(const, [Sigma_init], lookup_table);
+
+        Sigma = out(1);
+        
+        % get the shape of the free region
+        lambda = sqrt(kappa/Sigma);
+        r_phi = sin(phi)*R;
+        
+        out = free_shape_nonlinear_free_h(R, d, phi, kappa, Sigma, false);
+    
+        solution = deval(out, linspace(0,out.x(end), 1000));
+        r_nonlin = solution(2,:);
+        h_nonlin = solution(3,:)-solution(3,end);
+    
+        if out.x(end)<d/2
+            r_nonlin = [solution(2,1:end-1),d/2];
+            h_nonlin = [solution(3,1:end-1),solution(3,end)]-solution(3,end);
+        elseif out.x(end)>d/2
+            r_nonlin(r_nonlin>d/2) = d/2;
+            h_nonlin(r_nonlin>d/2) = 0;
+        end
+        
+        S_i = d^2;
+        S_A = 2*pi*R^2*(1-cos(phi));
+        S_B = out.y(8,end)*2*pi + pi*((d/2)^2-out.y(2,end)^2) + d^2*(1-pi/4)+pi*R^2*sin(phi)^2;
+        S_t = S_A + S_B;
+    
+        E_adhesion = epsilon*n0*S_A;
+        E_stretch_A = 0;
+        E_stretch_B = S_t*(Sigma^2/(2*kD)+kBT/(8*pi*kappa)*(Sigma-log(0.1*A*Sigma/kappa+1)/(0.1*A/kappa))) ...
+            -S_i*(Sigma_i^2/(2*kD)+kBT/(8*pi*kappa)*(Sigma_i-log(0.1*A*Sigma_i/kappa+1)/(0.1*A/kappa)));
+        E_bend_B = out.y(7,end)*kappa*pi;
+        E_bend_A = 4*pi*kappa*(1-cos(phi));
+        E = E_adhesion + E_stretch_A + E_stretch_B + E_bend_A + E_bend_B;
+        
+        E_all_nonlinear_self(1,jj,ii) = E;
+        E_all_nonlinear_self(2,jj,ii) = E_adhesion;
+        E_all_nonlinear_self(3,jj,ii) = E_stretch_A;
+        E_all_nonlinear_self(4,jj,ii) = E_stretch_B;
+        E_all_nonlinear_self(5,jj,ii) = E_bend_A;
+        E_all_nonlinear_self(6,jj,ii) = E_bend_B;
+        
+        alpha_A_vals_nonlinear_self(jj,ii) = Sigma/kD;
+        alpha_B_vals_nonlinear_self(jj,ii) = Sigma/kD;
+        S_A_vals_nonlinear_self(jj,ii) = S_A;
+        S_B_vals_nonlinear_self(jj,ii) = S_B;
+        Sigma_vals_nonlinear_self(jj,ii) = Sigma;
+        phi_end_nonlinear_self(jj,ii) = out.y(1,end);
+    
+    end
+    save(save_name, '-regexp', '^(?!(lookup_table)$).');
+    toc
+end
+
+MyTaskID = MyTaskID-1;
+save(save_name, '-regexp', '^(?!(lookup_table)$).');
+
+
+%%
+figure();
+plot(phi_vals, squeeze(E_all_nonlinear_self(1,:,ii)))
+
+figure();
+plot(phi_vals, squeeze(Sigma_vals_nonlinear_self(:,ii)))
+
+%% functions
+
+function [out,fval,exitflag,output,lam_vals,grad,hessian] = ...
+    get_nonlinear_minimum_lookup(constants, inputs, lookup_table)
+
+    epsilon = constants(1);
+    n0 = constants(2);
+    d = constants(3);
+    R = constants(4);
+    kD = constants(5);
+    kappa = constants(6);
+    alpha_i = constants(7);
+    A = constants(8);
+    phi = constants(9);
+    kBT = constants(10);
+    
+    assert(alpha_i<0.1);
+    
+    Sigma_init = inputs(1);
+
+    S_A = 2*pi*R^2*(1-cos(phi));
+    S_B = 0;
+    S_i = d^2;
+    S_t = S_A+S_B;
+
+    Sigma = Sigma_init;
+
+    options = optimoptions('fmincon','MaxFunEvals', 1e5, 'MaxIter', 1e3, 'algorithm', 'sqp',...
+        'OptimalityTolerance', 1e-12, 'ConstraintTolerance', 1e-12, 'StepTolerance', 1e-12, 'Display', 'off');
+    [out,fval,exitflag,output,lam_vals,grad,hessian] = ...
+        fmincon(@objective,[Sigma_init],...
+        [],[],[],[],[],[], ...
+        @constraint, options);
+
+    function [delA, E_bend_free, rend] = get_lookup(Sigma)
+        E_bend_free = lookup_table.F_Ebend(Sigma*R^2/kappa,phi,d/R)*pi*kappa;
+        delA = lookup_table.F_delA(Sigma*R^2/kappa,phi,d/R)*R^2;
+        rend = lookup_table.F_rend(Sigma*R^2/kappa,phi,d/R)*R;
+    end
+
+    function f = objective(y_obj)
+
+        Sigma = y_obj(1);
+
+        [delA, E_bend_free, ~] = get_lookup(Sigma);
+        if isnan(E_bend_free)
+            % if it doesn't work, do old method
+            
+            out_shape = free_shape_nonlinear_free_h(R, d, phi, kappa, Sigma, false);
+            
+            S_A = 2*pi*R^2*(1-cos(phi));
+            S_B = out_shape.y(8,end)*2*pi + pi*((d/2)^2-out_shape.y(2,end)^2) + d^2*(1-pi/4)+pi*R^2*sin(phi)^2;
+            S_t = S_A+S_B;
+            
+            % stretching, adhesion and bending energy
+            f = epsilon*n0*S_A ...
+              + S_t*(Sigma^2/(2*kD)+kBT/(8*pi*kappa)*(Sigma-log(0.1*A*Sigma/kappa+1)/(0.1*A/kappa))) ...
+              + out_shape.y(7,end)*kappa*pi + 4*pi*kappa*(1-cos(phi));
+        else
+            % we looked up correctly, get energies etc
+            S_A = 2*pi*R^2*(1-cos(phi));
+            S_B = delA+(d^2-pi*(R*sin(phi))^2);
+            S_t = S_A+S_B;
+            
+            % stretching, adhesion and bending energy
+            f = epsilon*n0*S_A ...
+              + S_t*(Sigma^2/(2*kD)+kBT/(8*pi*kappa)*(Sigma-log(0.1*A*Sigma/kappa+1)/(0.1*A/kappa))) ...
+              + E_bend_free + 4*pi*kappa*(1-cos(phi));
+        end
+
+    end
+
+    function [c,ceq]= constraint(~)
+    
+        c(1) = 0;
+        ceq(1) = (S_t*(1+alpha_i) - S_i)/S_i - (kBT/(8*pi*kappa)*log(1+0.1*A*Sigma/kappa)+Sigma/kD);
+    
+    end
+
+end
